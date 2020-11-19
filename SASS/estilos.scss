@@ -1,0 +1,175 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#contenidor {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    flex-wrap: nowrap;
+    align-content: stretch;
+
+    h2 {
+        color: #fff;
+    }
+
+    .caixaColors {
+        position: relative;
+        height: 100%;
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        &#blau {
+            background: #244F75;
+            @include anim (colBlava, 0);
+        }
+
+        &#verd {
+            background: #60BFBF;
+            @include anim (colVerda, .1s);
+        }
+
+        &#lila {
+            background: #8C4B7E;
+            @include anim (colLila, .3s);
+        }
+
+        &#groc {
+            background: #F8BB44;
+            @include anim (colGroga, .5s);
+        }
+
+        &#vermell {
+            background: #F24B4B;
+            @include anim (colVermella, .7s);
+        }
+
+        .contenidorReflexe {
+            &::after {
+                content: "";
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: white;
+                opacity: 0.1;
+                -webkit-transform-origin: center center;
+                transform-origin: center center;
+                -webkit-transform: skew(30deg) scaleY(1) translate(0, 0);
+                transform: skew(30deg) scaleY(1) translate(0, 0);
+                transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+            }
+
+            &:hover {
+                &::after {
+                    -webkit-transform: skew(0) scaleY(1) translate(0, 0);
+                    transform: skew(0) scaleY(1) translate(0, 0);
+                }
+            }
+        }
+    }
+}
+
+@mixin anim ($col, $delay) {
+    animation: $col .5s ease-in-out forwards;
+    animation-delay: $delay;
+}
+
+@keyframes colBlava {
+    0% {
+        transform: translate(-100%, 0)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+@keyframes colVerda {
+    0% {
+        transform: translate(0, -100%)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+@keyframes colLila {
+    0% {
+        transform: translate(0, 100%)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+@keyframes colGroga {
+    0% {
+        transform: translate(0, -100%)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+@keyframes colVermella {
+    0% {
+        transform: translate(100%, 0)
+    }
+
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+// @mixin movInicial ($iniciX, $iniciY) {
+//     @keyframes colColor {
+//         0% {
+//             transform: translate($iniciX, $iniciY)
+//         }
+
+//         100% {
+//             transform: translate(0, 0)
+//         }
+//     }
+// }
+
+// @mixin keyframes( $colColumna ) {
+//     @-webkit-keyframes $colColumna {
+//         @content;
+//     }
+//     @-moz-keyframes $colColumna {
+//         @content;
+//     }
+//     @-o-keyframes $colColumna {
+//         @content;
+//     }
+//     @keyframes $colColumna {
+//         @content;
+//     }
+// }
+
+// @mixin movInicial ($iniciX, $iniciY) {
+//         transform: translate($iniciX, $iniciY)
+// }
+
+// @include keyframes( colBlava )
+// {
+//     0% {
+//         @include movInicial (-100%, 0)
+//     }
+
+//     100% {
+//         transform: translate(0, 0)
+//     }
+// }
